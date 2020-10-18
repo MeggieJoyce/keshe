@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+//引入express session
+var session = require ('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,6 +21,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//△session配置
+app.use(session({
+  secret: 'lyj',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge:1000 * 60 * 5 }//制定登录session有效时长  5min
+}))
+//登录拦截
+app.get('*', function(req,res,next){
+  var username = req.session.username
+  //
+  var path = req.path
+  console.log('session',username)
+ //非用户拦截
+ if(path !='/login' && path !='/regist'){
+  if (!username) {
+    res.redirect('/login')
+  }
+ }
+  next()
+})
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

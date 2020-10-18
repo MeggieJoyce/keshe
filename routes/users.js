@@ -52,6 +52,7 @@ model.connect(function(db){
     }else{  //if查询到空数据，无用户名，跳转去注册页面
     
       if(docs.length > 0) {
+        req.session.username = data.username        //进行session会话存储
         res.redirect('/')
       }else{
         res.redirect('/login')
