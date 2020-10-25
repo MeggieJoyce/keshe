@@ -74,12 +74,12 @@ a {
   from {transform: rotate(0);}
   to { transform: rotate(360deg);}
 } */
-.top .home {
+/* .top .home {
   float: left;
   height: 50px;
   width: 50px;
   overflow: hidden;
-  /* background: url(/images/home.png) no-repeat 40px 40px / 0 0; */
+  background: url(/images/home.png) no-repeat 40px 40px / 0 0;
 }
 .top .home img {
   display: block;
@@ -87,7 +87,7 @@ a {
   height: 30px;
   margin-top: 10px;
   margin-left: -20px;
-}
+} */
 
 
 

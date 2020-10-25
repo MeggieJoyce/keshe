@@ -1,6 +1,11 @@
 <div  class="top">
-    <a src="/images/home.png" alt="首页"></a>
-    <span>用户名</span>
-    <a href="/write">写文</a>
-    <a href="/user/logout">退出</a>
+    <!-- 导航栏 用户名 -->
+    <span><%= username %></span>
+    <a href="/write">写文章</a>
+      <!-- 报错2  user没有加s  路由错误 -->
+    <a href="/users/logout">退出</a>
+    <a href="/" class="home">
+      <img src="/images/home.png" alt="首页">
+    </a>
+
 </div>

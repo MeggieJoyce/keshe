@@ -62,4 +62,12 @@ model.connect(function(db){
 })
   //console.log('用户登录',data)//控制台测试用
 })
+
+
+//△退出登录
+router.get('/logout',function(req,res,next){
+  req.session.username = null
+  res.redirect('/login')
+})
+
 module.exports = router;
