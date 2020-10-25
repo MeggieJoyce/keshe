@@ -74,7 +74,7 @@ a {
   from {transform: rotate(0);}
   to { transform: rotate(360deg);}
 } */
-/* .top .home {
+.top .home {
   float: left;
   height: 50px;
   width: 50px;
@@ -87,7 +87,7 @@ a {
   height: 30px;
   margin-top: 10px;
   margin-left: -20px;
-} */
+}
 
 
 

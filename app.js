@@ -6,8 +6,10 @@ var logger = require('morgan');
 //引入express session
 var session = require ('express-session');
 
+// 路由配置1
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var articleRouter = require('./routes/article');
 
 var app = express();
 
@@ -38,13 +40,16 @@ app.get('*', function(req,res,next){
  //非用户拦截
  if(path !='/login' && path !='/regist'){
   if (!username) {
-    res.redirect('/login')
+    res.redirect('/login')//登录拦截  搜我
   }
  }
   next()
 })
+
+// 路由配置2
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/article', articleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
