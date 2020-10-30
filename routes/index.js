@@ -65,37 +65,32 @@ router.get('/login',function(req, res, next) {
 
 
 
+//渲染写文章页 / 编辑文章页面
 
-//渲染发布文章页     /编辑文章页
 router.get('/write',function(req, res, next) {
-    var username  = req.session.username || ''
-    var id = parseInt(req.query.id)
-    var page = req.query.page
-    var item = {
-      title: '',
-      content: ''
-    }
+  var username  = req.session.username || ''
+  var id = parseInt(req.query.id)
+  var page = req.query.page
+  var item = {
+    title: '',
+    content: ''
+  }
 
-      if(id){   //这里是编辑
-        model.connect(function(db){
-          db.collection('articles').findOne({id:id},function(err,docs){
-            if(err){
-              console.log('查询失败')
-            }else{
-              item= docs
-              item['page']=page
-              res.render('write', {username: username, item: item})
-            }
-          })
-        })
+if(id){         //编辑
+  model.connect(function(db){
+    db.collection('articles').findOne({id:id},function(err,docs){
+      if(err){
+        console.log('查询失败')
+      }else{
+        item = docs
+        item['page'] = page
+        res.render('write',{username:username,item:item})
       }
-      
-      
-      
-      else{   //这里是新增
-            //报错2
-  res.render('write',{username:username});
-      }
+    })
+  })
+}else{          //新增
+  res.render('write',{username:username,item:item})
+}
 
 
 
