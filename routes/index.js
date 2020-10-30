@@ -7,9 +7,12 @@ router.get('/', function(req, res, next) {
   //
   var username  = req.session.username
   model.connect(function(db){
-    db.collection('users').find().toArray(function(err,docs){
-      console.log('用户列表',docs)
-      res.render('index',{username:username});
+    // db.collection('users').find().toArray(function(err,docs){
+      // console.log('用户列表',docs)
+          db.collection('articles').find().toArray(function(err,docs){
+      console.log('文章列表',docs)
+      var list = docs
+      res.render('index',{username:username,list:list});
     })
   })
 });
