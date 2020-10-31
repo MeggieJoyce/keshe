@@ -19,7 +19,8 @@
     <span><%= item.username %></span>
       <span><%= item.title %></span>  
       <span><%= item.time %></span>
-      <span><a href="">编辑</a><a href="">删除</a></span>
+      <span><a href="/write?id=<%=item.id%>&page=<%=data.curPage%>">编辑</a>
+         <a href="/article/delete?id=<%=item.id%>&page=<%=data.curPage%>">删除</a></span>
     </div>
     <% }) %>
 

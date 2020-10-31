@@ -5,6 +5,12 @@ var model = require('../model');
 
 // 新增、编辑
 router.post('/add', function(req, res, next) {
+      var id = parseInt(req.body.id)
+      if(id){       //修改
+  
+      }else{
+                //发布
+      }
 var data = {
     title: req.body.title,
      content:req.body.content,
@@ -24,4 +30,20 @@ model.connect(function(db) {
 })
 
 
+//删除文章接口
+router.get('/delete', function(req, res, next) {
+  var id = parseInt(req.query.id)
+  var page = req.query.page
+  model.connect(function(db) {
+    //api  deleteOne
+    db.collection('articles').deleteOne({id: id}, function(err, ret) {
+      if (err) {
+        console.log('删除失败')
+      } else {
+        console.log('删除成功')
+      }
+      res.redirect('/?page='+page)
+})
+})
+})
 module.exports = router;
