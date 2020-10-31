@@ -22,6 +22,14 @@
       <span><a href="">编辑</a><a href="">删除</a></span>
     </div>
     <% }) %>
+
+    <!-- 页码显示 -->
+    <div class="pages">
+      <% for(let i=1; i<=data.total; i++) { %>
+                                                  <!-- 点击页码   把页码传递给后台 -->
+        <a href="/?page=<%= i %>"><%= i %></a>
+      <% } %>
+    </div>
   </div>
 
 
