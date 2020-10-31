@@ -40,7 +40,7 @@ app.get('*', function(req,res,next){
  //非用户拦截
  if(path !='/login' && path !='/regist'){
   if (!username) {
-    //res.redirect('/login')//登录拦截  搜我
+    res.redirect('/login')//登录拦截  搜我
   }
  }
   next()
