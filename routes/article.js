@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var model = require('../model');
+var multiparty =  require('multiparty');
+var fs =  require('fs');
 /* GET users listing. */
 
 // 新增、编辑
@@ -63,4 +65,29 @@ router.get('/delete', function(req, res, next) {
 })
 })
 })
+
+
+//上传
+router.post('/upload',function(req,res,next){
+   var form = new multiparty.Form()
+   form.parse(req,function(err,fields,files){
+     if(err){
+       console.log('上传失败',err);
+     }else{ 
+       console.log('文件列表',files)
+       var file = files.filedata[0]
+      //  从控制台获取
+       var rs = fs.createReadStream(file.path)
+       var newPath = '/uploads/' + file.originalFilename
+       var ws = fs.createWriteStream('./public' + newPath)
+       rs.pipe(ws)  //管道
+      //  监听close事件
+       ws.on('close',function(){
+         console.log('图片上传成功')
+         res.send({err: '', msg: newPath})
+       })
+     }
+   })
+})
+
 module.exports = router;

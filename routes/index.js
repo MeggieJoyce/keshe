@@ -108,7 +108,6 @@ router.get('/detail',function(req, res, next) {
       }
     })
   })
-
 })
 
 
