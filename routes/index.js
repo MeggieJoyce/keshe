@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
     curPage: page,   //
     list: []  // 当前页的文章列表
   }
-  var pageSize = 2 //每页页数定义
+  var pageSize = 10 //每页页数定义
 
   model.connect(function(db){
     //1   查询*文章 
