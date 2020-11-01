@@ -14,7 +14,9 @@
         <!-- 序号、作者、帖子标题、时间、编辑、删除 -->
     <span><%= index+1 %></span>
     <span><%= item.username %></span>
-      <span><%= item.title %></span>  
+    <!-- 跳转详情页 detail.ejs -->
+    <span><a href="/detail?id=<%=item.id%>"><%= item.title %></a></span>
+
       <span><%= item.time %></span>
       <span><a href="/write?id=<%=item.id%>&page=<%=data.curPage%>">编辑</a>
          <a href="/article/delete?id=<%=item.id%>&page=<%=data.curPage%>">删除</a></span>

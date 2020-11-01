@@ -91,13 +91,25 @@ if(id){         //编辑
 }else{          //新增
   res.render('write',{username:username,item:item})
 }
-
-
-
 })
 
+//渲染详情页
+router.get('/detail',function(req, res, next) {
+  var id = parseInt(req.query.id)
+  var username = req.session.username || ''
+  model.connect(function(db){
+    db.collection('articles').findOne({id:id},function(err,docs){
+      if(err){
+        console.log('查询失败',err)
+      }else{
+        var item  = docs
+        item['time'] = moment(item.id).format('YYYY-MM-DD HH:mm:ss')
+        res.render('detail',{item:item,username: username})
+      }
+    })
+  })
 
-
+})
 
 
 module.exports = router;
